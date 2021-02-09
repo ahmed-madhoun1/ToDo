@@ -7,6 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.ahmedmadhoun.todo.R
 
-class AddEditTaskFragment : Fragment() {
+class AddEditTaskFragment : Fragment(R.layout.fragment_add_edit_task) {
 
 }
