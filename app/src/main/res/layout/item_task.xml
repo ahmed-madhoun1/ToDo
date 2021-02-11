@@ -14,7 +14,7 @@
         android:minHeight="0dp" />
 
     <TextView
-        android:id="@+id/text_view_task_name"
+        android:id="@+id/text_view_task_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/check_box_completed"
@@ -31,8 +31,8 @@
         android:id="@+id/image_view_label_priority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/text_view_task_name"
-        android:layout_alignBottom="@id/text_view_task_name"
+        android:layout_alignTop="@id/text_view_task_title"
+        android:layout_alignBottom="@id/text_view_task_title"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_priority_high" />
