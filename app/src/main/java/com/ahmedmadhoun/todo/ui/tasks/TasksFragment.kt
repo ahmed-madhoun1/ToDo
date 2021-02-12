@@ -3,6 +3,7 @@ package com.ahmedmadhoun.todo.ui.tasks
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -37,6 +38,8 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         viewModel.tasks.observe(viewLifecycleOwner) {
             tasksAdapter.submitList(it)
         }
+
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -45,11 +48,34 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         val searchItem = menu.findItem(R.id.search_item)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.onQueryTextChange{
-
+        searchView.onQueryTextChange {
+            // update search query
+            viewModel.searchQuery.value = it
         }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
 
+            R.id.sort_by_name_item -> {
+
+                true
+            }
+            R.id.sort_by_date_created_item -> {
+
+                true
+            }
+            R.id.hide_completed_item -> {
+                item.isChecked = !item.isChecked
+
+                true
+            }
+            R.id.delete_all_completed_item -> {
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }
