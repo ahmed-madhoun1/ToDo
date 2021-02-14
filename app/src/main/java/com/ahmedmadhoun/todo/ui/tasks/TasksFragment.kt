@@ -9,12 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ahmedmadhoun.todo.R
+import com.ahmedmadhoun.todo.data.FilterPreferences
 import com.ahmedmadhoun.todo.data.SortOrder
 import com.ahmedmadhoun.todo.databinding.FragmentTasksBinding
 import com.ahmedmadhoun.todo.util.onQueryTextChange
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TasksFragment : Fragment(R.layout.fragment_tasks) {
@@ -51,6 +56,11 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
 
         searchView.onQueryTextChange {
             viewModel.searchQuery.value = it
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            menu.findItem(R.id.hide_completed_item).isChecked =
+                viewModel.preferencesFlow.first().hideCompleted
         }
     }
 
