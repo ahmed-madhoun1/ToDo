@@ -28,4 +28,8 @@
             android:name="screenTitle"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/deleteCompletedTasksDialogFragment"
+        android:name="com.ahmedmadhoun.todo.ui.deletecompletedtasks.DeleteCompletedTasksDialogFragment"
+        android:label="DeleteCompletedTasksDialogFragment" /><action android:id="@+id/action_global_deleteCompletedTasksDialogFragment" app:destination="@id/deleteCompletedTasksDialogFragment"/>
 </navigation>
