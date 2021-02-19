@@ -7,6 +7,8 @@ import com.ahmedmadhoun.todo.data.PreferencesManager
 import com.ahmedmadhoun.todo.data.SortOrder
 import com.ahmedmadhoun.todo.data.Task
 import com.ahmedmadhoun.todo.data.TaskDao
+import com.ahmedmadhoun.todo.ui.ADD_TASK_RESULT_OK
+import com.ahmedmadhoun.todo.ui.EDIT_TASK_RESULT_OK
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -63,10 +65,22 @@ class TasksViewModel @ViewModelInject constructor(
         tasksEventChannel.send(TasksEvent.NavigateToAddTaskScreen)
     }
 
+    fun onAddEditResult(result: Int) {
+        when (result) {
+            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task Added")
+            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task Updated")
+        }
+    }
+
+    private fun showTaskSavedConfirmationMessage(message: String) = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.ShowTaskSavedConfirmationMessage(message))
+    }
+
     sealed class TasksEvent {
         object NavigateToAddTaskScreen : TasksEvent() // object because we don't use parameters (More Efficient)
         data class NavigateToEditTaskScreen(val task: Task) : TasksEvent()
         data class ShowUndoDeleteTaskMessage(val task: Task) : TasksEvent()
+        data class ShowTaskSavedConfirmationMessage(val msg: String) : TasksEvent()
     }
 
 }
