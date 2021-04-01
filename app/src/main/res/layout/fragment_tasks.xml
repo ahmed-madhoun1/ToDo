@@ -11,28 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/white"
-        app:elevation="@dimen/_10sdp"
-        app:fabAlignmentMode="center"
-        app:fabAnimationMode="scale"
-        app:fabCradleRoundedCornerRadius="@dimen/_20sdp"
-        app:fabCradleVerticalOffset="@dimen/_5sdp"
-        app:menu="@menu/app_bar_menu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@color/blue"
+        app:rippleColor="@color/white"
+        android:backgroundTint="@color/blue"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/white"
-        app:layout_anchor="@id/bottom_app_bar" />
+        app:fabCustomSize="@dimen/_50sdp"
+        app:layout_anchorGravity="center"
+        app:maxImageSize="@dimen/_20sdp" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
